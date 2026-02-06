@@ -3,137 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BCWC 2026 - Inscription</title>
+  <title>BCWC 2026 - Fiche d'inscription</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fdfaf4; /* blanc cassé */
-      color: #0b1d3a; /* bleu marine */
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #0b1d3a;
-      color: #ffd700; /* or */
-      text-align: center;
-      padding: 1.5rem;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-    header p {
-      margin: 0.5rem 0 0 0;
-      font-size: 1rem;
-    }
-    form {
-      max-width: 600px;
-      margin: 2rem auto;
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-    textarea {
-      resize: vertical;
-    }
-    button {
-      margin-top: 1.5rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #0b1d3a;
-      color: #ffd700;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #08132b;
-    }
-    .confirmation {
-      max-width: 600px;
-      margin: 2rem auto;
-      background: #e6f0ff;
-      color: #0b1d3a;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      display: none;
-    }
+    body { font-family: Arial, sans-serif; background-color: #f9f7f1; color: #000033; padding: 20px; }
+    header { text-align: center; margin-bottom: 20px; }
+    header h1 { color: #000033; }
+    header p { color: #bfa74f; font-weight: bold; }
+    section { margin-bottom: 20px; }
+    h2 { color: #000033; border-bottom: 2px solid #bfa74f; padding-bottom: 5px; }
+    label { display: block; margin: 10px 0 5px; }
+    input[type=text], input[type=number], input[type=email] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    input[type=checkbox] { margin-right: 10px; }
+    ul { margin-left: 20px; }
+    button { background-color: #000033; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    button:hover { background-color: #bfa74f; color: #000033; }
+    .confirmation { margin-top: 20px; color: #000033; font-weight: bold; }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Business Class Women Competition (BCWC) – 2026</h1>
-  <p>Édition spéciale : Fiche d'inscription BCWC 2026</p>
+  <p>Édition spéciale : fiche d'inscription</p>
 </header>
 
 <form id="bcwcForm">
-  <label for="name">Nom complet / Full Name</label>
-  <input type="text" id="name" name="name" required>
+  <!-- 1. IDENTIFICATION -->
+  <section>
+    <h2>1. Identification</h2>
+    <label>Nom complet / Full Name:</label>
+    <input type="text" name="fullName" required>
 
-  <label for="dob">Date & lieu de naissance / Date & Place of Birth</label>
-  <input type="text" id="dob" name="dob" required>
+    <label>Date & Lieu de naissance / Date & Place of birth:</label>
+    <input type="text" name="birth" required>
 
-  <label for="age">Âge / Age (18-35)</label>
-  <input type="number" id="age" name="age" required>
+    <label>Âge / Age (18-35) | ID/CNI No:</label>
+    <input type="text" name="ageId" required>
 
-  <label for="city">Ville & Quartier / City & Neighborhood</label>
-  <input type="text" id="city" name="city" required>
+    <label>Ville & Quartier / City & Neighborhood:</label>
+    <input type="text" name="city" required>
 
-  <label for="phone">WhatsApp / Phone Number</label>
-  <input type="text" id="phone" name="phone" required>
+    <label>WhatsApp / Phone:</label>
+    <input type="text" name="phone" required>
 
-  <label for="email">Email / Email</label>
-  <input type="email" id="email" name="email" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
 
-  <label for="profession">Profession actuelle / Current Occupation</label>
-  <input type="text" id="profession" name="profession" required>
+    <label>Profession actuelle / Current Occupation:</label>
+    <input type="text" name="occupation" required>
+  </section>
 
-  <label for="sector">Secteur de compétition / Sector of Competition</label>
-  <select id="sector" name="sector" required>
-    <option value="">-- Sélectionnez / Choose --</option>
-    <option value="production">Production végétale / Crop Production</option>
-    <option value="transformation">Transformation agro-alimentaire / Agro-Food Processing</option>
-    <option value="elevage">Élevage & Transformation Animale / Agro-Pastoral & Livestock</option>
-    <option value="logistique">Conditionnement & Logistique Agricole / Packaging & Agri-Logistics</option>
-  </select>
+  <!-- 2. SECTOR OF COMPETITION -->
+  <section>
+    <h2>2. Secteur de compétition / Sector of Competition</h2>
+    <label><input type="checkbox" name="sector" value="Crop Production"> Production Végétale (Maïs, Manioc, Tubercules, etc.)</label>
+    <label><input type="checkbox" name="sector" value="Agro-Food Processing"> Transformation Agro-alimentaire (Farines, Huiles, Séchage, etc.)</label>
+    <label><input type="checkbox" name="sector" value="Agro-Pastoral & Livestock"> Élevage & Transformation Animale (Aviculture, Pisciculture, etc.)</label>
+    <label><input type="checkbox" name="sector" value="Packaging & Agri-Logistics"> Conditionnement & Logistique Agricole</label>
+  </section>
 
-  <label for="motivation">Motivation / 1-Page Sector Summary</label>
-  <textarea id="motivation" name="motivation" rows="5" required></textarea>
+  <!-- 3. APPLICATION DOSSIER CHECKLIST -->
+  <section>
+    <h2>3. Pièces à fournir / Application Dossier Checklist</h2>
+    <label><input type="checkbox" name="documents" value="Registration Form" required> Fiche d'inscription dûment remplie</label>
+    <label><input type="checkbox" name="documents" value="ID Card" required> Photocopie de la CNI ou du Passeport</label>
+    <label><input type="checkbox" name="documents" value="Photos" required> 02 Photos d'identité 4x4</label>
+    <label><input type="checkbox" name="documents" value="Proof of Payment" required> Preuve de paiement des frais (30 000 FCFA)</label>
+    <label><input type="checkbox" name="documents" value="Sector Summary" required> Résumé d'une page sur votre motivation pour l'Agro-industrie</label>
+  </section>
+
+  <!-- 4. ENGAGEMENT -->
+  <section id="engagement">
+    <h2>4. Engagement des candidates / Commitment & Rules</h2>
+    <ul>
+      <li>Assiduité : Je m'engage à être présente à toutes les sessions du 02 au 08 mars 2026.</li>
+      <li>Cellule d'Action : J'accepte de travailler en groupe pour une production industrielle collective.</li>
+      <li>Discipline : Je respecterai les valeurs d'intégrité et de travail prônées par l'État.</li>
+    </ul>
+  </section>
+
+  <!-- 5. VALIDATION -->
+  <section>
+    <h2>5. Validation du candidat / Candidate Validation</h2>
+    <label><input type="checkbox" name="validation" required> LU ET APPROUVÉ / READ AND APPROVED</label>
+    <p>(Cochez cette case pour valider votre engagement et les termes du concours ci-dessus)</p>
+    <label>Date : <input type="text" name="date" placeholder="__/__/2026" required></label>
+  </section>
+
+  <!-- 6. RÉSERVATION DES STANDS -->
+  <section>
+    <h2>6. Réservation des stands pour les entreprises</h2>
+    <p>Les entreprises souhaitant réserver un stand pour présenter ou soutenir les candidates doivent contacter : <br>
+    Email : <strong>infobusinessclassewomen@gmail.com</strong></p>
+  </section>
+
+  <!-- 7. RÉSERVATION DE BILLETS -->
+  <section>
+    <h2>7. Réservation de billets pour assister à la compétition</h2>
+    <p>Pour vivre la compétition en live et soutenir les candidates : <br>
+    Téléphone / WhatsApp : <strong>+237 691238359</strong> <br>
+    Email : <strong>infobusinessclassewomen@gmail.com</strong></p>
+  </section>
 
   <button type="submit">Soumettre / Submit</button>
 </form>
 
-<div class="confirmation" id="confirmation">
+<div class="confirmation" id="confirmation" style="display:none;">
   Merci, votre candidature a été reçue. <br>
-  Veuillez envoyer vos documents (CNI, photos, preuve de paiement) à : 
-  <strong>infobusinessclassewomen@gmail.com</strong>
+  Veuillez envoyer vos documents à : <strong>infobusinessclassewomen@gmail.com</strong>
 </div>
 
 <script>
-  const form = document.getElementById('bcwcForm');
-  const confirmation = document.getElementById('confirmation');
-
-  form.addEventListener('submit', function(e){
+  document.getElementById('bcwcForm').addEventListener('submit', function(e){
     e.preventDefault();
-    // Ici, on pourrait envoyer les données à Google Sheet ou CSV
-    form.style.display = 'none';
-    confirmation.style.display = 'block';
+    document.getElementById('confirmation').style.display = 'block';
+    this.reset();
   });
 </script>
 
