@@ -4,27 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BCWC 2026 - Fiche d'inscription</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f9f7f1; color: #000033; padding: 20px; }
-    header { text-align: center; margin-bottom: 20px; }
-    header h1 { color: #000033; }
-    header p { color: #bfa74f; font-weight: bold; }
-    section { margin-bottom: 20px; }
-    h2 { color: #000033; border-bottom: 2px solid #bfa74f; padding-bottom: 5px; }
-    label { display: block; margin: 10px 0 5px; }
-    input[type=text], input[type=number], input[type=email] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
-    input[type=checkbox] { margin-right: 10px; }
-    ul { margin-left: 20px; }
-    button { background-color: #000033; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-    button:hover { background-color: #bfa74f; color: #000033; }
-    .confirmation { margin-top: 20px; color: #000033; font-weight: bold; }
+    /* Couleurs : Bleu marine, Or, Blanc cassé */
+    :root {
+      --blue-navy: #001f4d;
+      --gold: #bfa74f;
+      --off-white: #f9f7f1;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--off-white);
+      color: var(--blue-navy);
+      padding: 15px;
+      margin: 0;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    header h1 { 
+      color: var(--blue-navy); 
+      font-size: 1.6em; 
+    }
+
+    header p { 
+      color: var(--gold); 
+      font-weight: bold; 
+      font-size: 1.1em; 
+    }
+
+    section { margin-bottom: 15px; }
+    h2 { 
+      color: var(--blue-navy); 
+      font-size: 1.2em; 
+      border-bottom: 2px solid var(--gold); 
+      padding-bottom: 5px; 
+    }
+
+    label { display: block; margin: 8px 0 3px; font-size: 1em; }
+    input[type=text], input[type=number], input[type=email], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    input[type=checkbox] { margin-right: 8px; transform: scale(1.2); }
+
+    ul { margin-left: 20px; font-size: 0.95em; }
+
+    button {
+      width: 100%;
+      background-color: var(--blue-navy);
+      color: var(--off-white);
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+
+    button:hover { 
+      background-color: var(--gold); 
+      color: var(--blue-navy); 
+    }
+
+    @media (max-width: 600px) {
+      h2 { font-size: 1.1em; }
+      input, textarea { font-size: 1em; }
+      button { font-size: 1em; padding: 14px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Business Class Women Competition (BCWC) – 2026</h1>
-  <p>Édition spéciale : fiche d'inscription</p>
+  <p>Autonomisation Féminin: Fiche d'inscription</p>
 </header>
 
 <form id="bcwcForm">
@@ -33,27 +98,21 @@
     <h2>1. Identification</h2>
     <label>Nom complet / Full Name:</label>
     <input type="text" name="fullName" required>
-
     <label>Date & Lieu de naissance / Date & Place of birth:</label>
     <input type="text" name="birth" required>
-
     <label>Âge / Age (18-35) | ID/CNI No:</label>
     <input type="text" name="ageId" required>
-
     <label>Ville & Quartier / City & Neighborhood:</label>
     <input type="text" name="city" required>
-
     <label>WhatsApp / Phone:</label>
     <input type="text" name="phone" required>
-
     <label>Email:</label>
     <input type="email" name="email" required>
-
     <label>Profession actuelle / Current Occupation:</label>
     <input type="text" name="occupation" required>
   </section>
 
-  <!-- 2. SECTOR OF COMPETITION -->
+  <!-- 2. SECTEUR DE COMPÉTITION -->
   <section>
     <h2>2. Secteur de compétition / Sector of Competition</h2>
     <label><input type="checkbox" name="sector" value="Crop Production"> Production Végétale (Maïs, Manioc, Tubercules, etc.)</label>
@@ -62,17 +121,22 @@
     <label><input type="checkbox" name="sector" value="Packaging & Agri-Logistics"> Conditionnement & Logistique Agricole</label>
   </section>
 
-  <!-- 3. APPLICATION DOSSIER CHECKLIST -->
+  <!-- 3. DOSSIER CHECKLIST -->
   <section>
     <h2>3. Pièces à fournir / Application Dossier Checklist</h2>
     <label><input type="checkbox" name="documents" value="Registration Form" required> Fiche d'inscription dûment remplie</label>
     <label><input type="checkbox" name="documents" value="ID Card" required> Photocopie de la CNI ou du Passeport</label>
     <label><input type="checkbox" name="documents" value="Photos" required> 02 Photos d'identité 4x4</label>
     <label><input type="checkbox" name="documents" value="Proof of Payment" required> Preuve de paiement des frais (30 000 FCFA)</label>
-    <label><input type="checkbox" name="documents" value="Sector Summary" required> Résumé d'une page sur votre motivation pour l'Agro-industrie</label>
   </section>
 
-  <!-- 4. ENGAGEMENT -->
+  <!-- 3.5 Résumé -->
+  <section>
+    <h2>Résumé du projet / Motivation (1 page maximum)</h2>
+    <textarea name="projectSummary" rows="6" required placeholder="Écrivez ici votre résumé..."></textarea>
+  </section>
+
+  <!-- 4. Engagement -->
   <section id="engagement">
     <h2>4. Engagement des candidates / Commitment & Rules</h2>
     <ul>
@@ -82,42 +146,72 @@
     </ul>
   </section>
 
-  <!-- 5. VALIDATION -->
+  <!-- 5. Validation -->
   <section>
     <h2>5. Validation du candidat / Candidate Validation</h2>
     <label><input type="checkbox" name="validation" required> LU ET APPROUVÉ / READ AND APPROVED</label>
-    <p>(Cochez cette case pour valider votre engagement et les termes du concours ci-dessus)</p>
     <label>Date : <input type="text" name="date" placeholder="__/__/2026" required></label>
   </section>
 
-  <!-- 6. RÉSERVATION DES STANDS -->
+  <!-- 6. Réservation des stands -->
   <section>
     <h2>6. Réservation des stands pour les entreprises</h2>
-    <p>Les entreprises souhaitant réserver un stand pour présenter ou soutenir les candidates doivent contacter : <br>
-    Email : <strong>infobusinessclassewomen@gmail.com</strong></p>
+    <p>Contact : <strong>infobusinessclassewomen@gmail.com</strong></p>
   </section>
 
-  <!-- 7. RÉSERVATION DE BILLETS -->
+  <!-- 7. Réservation de billets -->
   <section>
     <h2>7. Réservation de billets pour assister à la compétition</h2>
-    <p>Pour vivre la compétition en live et soutenir les candidates : <br>
-    Téléphone / WhatsApp : <strong>+237 691238359</strong> <br>
-    Email : <strong>infobusinessclassewomen@gmail.com</strong></p>
+    <p>Contact : <strong>+237 691238359</strong> ou <strong>infobusinessclassewomen@gmail.com</strong></p>
   </section>
 
-  <button type="submit">Soumettre / Submit</button>
+  <button type="button" id="downloadBtn">Télécharger ma fiche / Download</button>
 </form>
 
-<div class="confirmation" id="confirmation" style="display:none;">
-  Merci, votre candidature a été reçue. <br>
-  Veuillez envoyer vos documents à : <strong>infobusinessclassewomen@gmail.com</strong>
-</div>
-
 <script>
-  document.getElementById('bcwcForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    document.getElementById('confirmation').style.display = 'block';
-    this.reset();
+  document.getElementById('downloadBtn').addEventListener('click', function(){
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const form = document.getElementById('bcwcForm');
+    let y = 10;
+
+    doc.setFontSize(16);
+    doc.text("Business Class Women Competition (BCWC) – 2026", 10, y); y+=10;
+    doc.setFontSize(12);
+    doc.text("Autonomisation Féminin: Fiche d'inscription", 10, y); y+=10;
+
+    ["fullName","birth","ageId","city","phone","email","occupation"].forEach(name=>{
+      const val = form[name].value || "";
+      doc.setFontSize(12);
+      doc.text(`${name.replace(/([A-Z])/g," $1")}: ${val}`, 10, y); y+=6;
+    });
+
+    const sectors = form.querySelectorAll('input[name="sector"]:checked');
+    doc.setFontSize(14); doc.text("2. Secteur de compétition", 10, y); y+=7;
+    sectors.forEach(s => { doc.setFontSize(12); doc.text(`- ${s.parentElement.textContent}`, 10, y); y+=6; });
+
+    const docs = form.querySelectorAll('input[name="documents"]:checked');
+    doc.setFontSize(14); doc.text("3. Pièces à fournir",10,y); y+=7;
+    docs.forEach(d => { doc.setFontSize(12); doc.text(`- ${d.parentElement.textContent}`,10,y); y+=6; });
+
+    doc.setFontSize(14); doc.text("Résumé du projet / Motivation",10,y); y+=7;
+    const summary = form["projectSummary"].value || "";
+    doc.splitTextToSize(summary, 180).forEach(line => { doc.setFontSize(12); doc.text(line,10,y); y+=6; });
+    y+=5;
+
+    doc.setFontSize(14); doc.text("4. Engagement des candidates",10,y); y+=7;
+    doc.setFontSize(12);
+    doc.text("- Assiduité : Je m'engage à être présente à toutes les sessions du 02 au 08 mars 2026.",10,y); y+=6;
+    doc.text("- Cellule d'Action : J'accepte de travailler en groupe pour une production industrielle collective.",10,y); y+=6;
+    doc.text("- Discipline : Je respecterai les valeurs d'intégrité et de travail prônées par l'État.",10,y); y+=10;
+
+    doc.setFontSize(14); doc.text("5. Validation du candidat",10,y); y+=7;
+    const dateVal = form["date"].value || "";
+    doc.setFontSize(12);
+    doc.text("- LU ET APPROUVÉ",10,y); y+=6;
+    doc.text(`- Date: ${dateVal}`,10,y); y+=10;
+
+    doc.save("Fiche_BCWC2026.pdf");
   });
 </script>
 
