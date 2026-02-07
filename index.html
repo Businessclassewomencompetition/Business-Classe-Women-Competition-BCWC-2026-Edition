@@ -2,128 +2,138 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>BCWC 2026 - Confirmation PDF</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCWC 2026 - Fiche d'inscription</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:wght@700&family=Roboto&display=swap');
 
-  body { font-family: 'Roboto', sans-serif; margin: 0; padding: 10px; background: #f8f9fa; }
-  .header { background-color: #001F4D; color: #FFD700; text-align: center; padding: 15px; font-family: 'Cinzel', serif; font-size: 18pt; font-weight: 700; }
-  .header-line { border-bottom: 2px solid #FFD700; margin-top: 5px; }
-  .subheader { text-align: center; font-family: 'Lora', serif; font-size: 14pt; margin: 10px 0; }
-  .section { margin: 10px 0; font-size: 11pt; padding: 5px 0; }
-  .partners { margin: 10px 0; font-weight: 500; text-align: center; }
-  .footer { margin-top: 20px; font-size: 11pt; text-align: left; }
-  button { margin-top: 20px; padding: 10px 15px; font-size: 14pt; cursor: pointer; }
-  select, input { font-size: 11pt; padding: 6px; margin: 5px 0; width: 100%; }
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f9f7f1;
+  color:#001f4d;
+  padding:15px;
+}
+header{text-align:center;margin-bottom:20px;}
+header h1{margin:0;font-size:1.6em;}
+header p{color:#bfa74f;font-weight:bold;}
+
+section{margin-bottom:20px;}
+h2{border-bottom:2px solid #bfa74f;padding-bottom:5px;font-size:1.1em;}
+input,textarea,select,button{
+  width:100%;padding:10px;margin-bottom:8px;border-radius:5px;
+}
+button{
+  background:#001f4d;color:#fff;font-weight:bold;border:none;
+}
+button:hover{background:#bfa74f;color:#001f4d;}
 </style>
 </head>
+
 <body>
 
-<div class="header">
-  AUTORISATION N° 001/RDA/J12 /SAAJP
-  <div class="header-line"></div>
-</div>
+<header>
+<h1>Business Class Women Competition – BCWC 2026</h1>
+<p>Fiche officielle d’inscription</p>
+</header>
 
-<div class="subheader">
-  BUSINESS CLASS WOMEN COMPETITION (BCWC) – 2026<br>
-  Special Agro Edition / Édition Spéciale Agro<br>
-  CONFIRMATION OFFICIELLE D’INSCRIPTION
-</div>
+<form id="bcwcForm">
 
-<div class="section">
-  <label>Nom de la candidate / Full Name :</label>
-  <input type="text" id="nameInput" placeholder="Entrez votre nom complet">
-</div>
+<section>
+<h2>1. Identification</h2>
+<input name="fullName" placeholder="Nom complet" required>
+<input name="birth" placeholder="Date & lieu de naissance" required>
+<input name="age" placeholder="Âge (18-35)" required>
+<input name="identity" placeholder="N° CNI / Passeport" required>
+<input name="city" placeholder="Ville & Quartier" required>
+<input name="phone" placeholder="Téléphone / WhatsApp" required>
+<input type="email" name="email" placeholder="Email" required>
+<input name="occupation" placeholder="Profession actuelle" required>
+</section>
 
-<div class="section">
-  <label>Secteur choisi / Selected Sector :</label>
-  <select id="sectorSelect">
-    <option value="">-- Choisissez votre secteur --</option>
-    <option value="PV">Production Végétale</option>
-    <option value="TA">Transformation Agro-alimentaire</option>
-    <option value="EA">Élevage & Transformation Animale</option>
-    <option value="CL">Conditionnement & Logistique Agricole</option>
-  </select>
-</div>
+<section>
+<h2>2. Secteur</h2>
+<label><input type="radio" name="sector" value="AGRO" required> Agriculture & Agroalimentaire</label><br>
+<label><input type="radio" name="sector" value="ELEVAGE"> Élevage & Transformation animale</label><br>
+<label><input type="radio" name="sector" value="LOGISTIQUE"> Logistique & Conditionnement</label>
+</section>
 
-<div class="section">
-  <b>Numéro de candidate / Candidate Number :</b> <span id="number">--</span><br>
-  <b>Statut :</b> DOSSIER REÇU
-</div>
+<section>
+<h2>3. Résumé du projet</h2>
+<textarea name="projectSummary" rows="5" required></textarea>
+</section>
 
-<div class="section">
-  <b>Instructions pour envoyer les documents :</b><br>
-  Veuillez envoyer tous les documents requis scannés (CNI/Passeport, photos 4x4, preuve de paiement, la fiche de confirmation de dépôt en ligne) à l’adresse officielle suivante :<br>
-  <b>infobusinessclassewomen@gmail.com</b><br>
-  Délai : 72 heures après soumission | Date limite globale : 25 février 2026 à 23h59
-</div>
+<section>
+<h2>4. Engagement</h2>
+<label><input type="checkbox" required> Je respecte les engagements du programme BCWC</label>
+</section>
 
-<div class="section">
-  <b>Réservation des stands / Booth Reservation :</b><br>
-  Les entreprises intéressées par un stand pour présenter leurs produits ou services doivent écrire à :<br>
-  <b>infobusinessclassewomen@gmail.com</b><br>
-  ou appeler <b>+237 691 238 359</b>
-</div>
-
-<div class="section">
-  <b>Réservation de billets / Ticket Booking :</b><br>
-  Pour vivre la compétition en live et soutenir les projets des candidates, veuillez contacter :<br>
-  <b>infobusinessclassewomen@gmail.com</b><br>
-  ou appeler <b>+237 691 238 359</b>
-</div>
-
-<div class="partners">
-  <b>PARTENAIRES</b><br>
-  <i>Institutions :</i> MINPROFF • MINPMEESA • MINADER • MINEPIA • MINJEC<br>
-  <i>Privés :</i> MTN Cameroun • Orange Cameroun • Master Food<br>
-  <i>Associations / ONG :</i> COMMONWEALTH WOMEN’S NETWORK AFRICA • HACIG • AYESUD • ONG BARAKUDA
-</div>
-
-<div class="footer">
-  <b>Issued by / Délivré par :</b><br>
-  BCWC 2026 Organizing Committee: <b>CHARITY & HOPE AFRICA</b><br>
-  Comité d’Organisation BCWC 2026: <b>CHARITY & HOPE AFRICA</b><br>
-  Special Agro Edition / Édition Spéciale Agro
-</div>
-
-<button id="downloadBtn">Télécharger le PDF</button>
+<button type="button" id="submitBtn">Soumettre l’inscription</button>
+</form>
 
 <script>
-// Compteurs persistants par secteur
-let counters = JSON.parse(localStorage.getItem('bcwcCounters')) || { PV: 0, TA: 0, EA: 0, CL: 0 };
+const { jsPDF } = window.jspdf;
+const form = document.getElementById("bcwcForm");
 
-// Attribution automatique du numéro
-document.getElementById('sectorSelect').addEventListener('change', function() {
-  const sector = this.value;
-  const name = document.getElementById('nameInput').value || "________________";
+function generateNumber(){
+  return "BCWC-2026-AGRO-" + Math.floor(1000 + Math.random()*9000);
+}
 
-  if(sector) {
-    counters[sector]++;
-    localStorage.setItem('bcwcCounters', JSON.stringify(counters)); // persiste le compteur
-    const num = String(counters[sector]).padStart(3, '0');
-    const candidateNumber = `BCWC-2026-${sector}-${num}`;
-    document.getElementById('number').textContent = candidateNumber;
-  }
-});
+document.getElementById("submitBtn").onclick = () => {
+ if(!form.checkValidity()){alert("Veuillez remplir tous les champs.");return;}
 
-// Génération du PDF
-document.getElementById('downloadBtn').addEventListener('click', function() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF('p', 'mm', 'a4');
+ const num = generateNumber();
+ const doc = new jsPDF();
 
-  const nameVal = document.getElementById('nameInput').value || "________________";
-  document.getElementById('nameInput').value = nameVal;
+ // EN-TÊTE
+ doc.setFillColor(0,31,77);
+ doc.rect(0,0,210,22,'F');
+ doc.setTextColor(191,167,79);
+ doc.setFontSize(10);
+ doc.text("FICHE OFFICIELLE DE CONFIRMATION – BCWC 2026",105,10,{align:"center"});
+ doc.text("INSCRIPTION SOUMISE AVEC SUCCÈS",105,16,{align:"center"});
 
-  html2canvas(document.body, { scale: 2 }).then(canvas => {
-    const imgData = canvas.toDataURL('image/png');
-    const pdfWidth = doc.internal.pageSize.getWidth() - 20;
-    const pdfHeight = canvas.height * pdfWidth / canvas.width;
-    doc.addImage(imgData, 'PNG', 10, 10, pdfWidth, pdfHeight);
-    doc.save('BCWC_Confirmation.pdf');
-  });
-});
+ let y=30;
+ doc.setTextColor(0,0,0);
+ doc.setFontSize(11);
+
+ doc.text("📌 Statut du dossier : 🟢 Dossier reçu",10,y); y+=8;
+ doc.text("Numéro de candidate :",10,y); y+=6;
+ doc.setFont(undefined,"bold");
+ doc.text(num,10,y); y+=10;
+ doc.setFont(undefined,"normal");
+
+ doc.text("⚠️ Ce document est obligatoire pour finaliser votre dossier.",10,y); y+=10;
+
+ doc.text("📂 DOCUMENTS À ENVOYER (sous 24 heures)",10,y); y+=6;
+ doc.text("- CNI ou Passeport",10,y); y+=5;
+ doc.text("- Deux (02) photos 4x4",10,y); y+=5;
+ doc.text("- Preuve de paiement (le cas échéant)",10,y); y+=5;
+ doc.text("- Fiche de confirmation (PDF)",10,y); y+=8;
+ doc.text("📧 infobusinessclassewomen@gmail.com",10,y); y+=8;
+ doc.text("⏰ Tout dossier incomplet ou hors délai sera rejeté.",10,y); y+=10;
+
+ doc.text("🏢 RÉSERVATION DE STAND (Exposants)",10,y); y+=6;
+ doc.text("Email : infobusinessclassewomen@gmail.com",10,y); y+=5;
+ doc.text("Téléphone : +237 691 238 359",10,y); y+=8;
+
+ doc.text("🎟️ BILLETTERIE – ACCÈS AU PUBLIC",10,y); y+=6;
+ doc.text("Email : infobusinessclassewomen@gmail.com",10,y); y+=5;
+ doc.text("Téléphone : +237 691 238 359",10,y); y+=10;
+
+ doc.text("🤝 PARTENAIRES OFFICIELS",10,y); y+=6;
+ doc.text("Institutions : MINPROFF, MINPMEESA, MINADER, MINEPIA, MINJEC",10,y,{maxWidth:190}); y+=8;
+ doc.text("Privés : MTN Cameroun, Orange Cameroun, Master Food",10,y); y+=8;
+ doc.text("ONG & Réseaux : COMMONWEALTH WOMEN’S NETWORK AFRICA, HACIG, AYESUD, ONG BARAKUDA",10,y,{maxWidth:190}); y+=12;
+
+ doc.text("🏛️ Organisation",10,y); y+=6;
+ doc.text("Issued by / Délivré par :",10,y); y+=5;
+ doc.text("CHARITY & HOPE AFRICA",10,y); y+=5;
+ doc.text("BCWC 2026 Organizing Committee",10,y);
+
+ doc.save("BCWC_Confirmation_"+num+".pdf");
+ alert("Inscription soumise. Votre confirmation PDF a été générée.");
+ form.reset();
+};
 </script>
 
 </body>
