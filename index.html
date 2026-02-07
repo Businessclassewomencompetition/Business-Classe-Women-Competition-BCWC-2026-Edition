@@ -32,8 +32,10 @@ button:hover{background:#bfa74f;color:#001f4d;}
 <body>
 
 <header>
-<h1>Business Class Women Competition – BCWC 2026</h1>
-<p>Fiche officielle d’inscription</p>
+  <h1>Business Class Women Competition (BCWC) – 2026</h1>
+  <p>
+    <span style="color:#FFD700; font-weight:bold;">Autonomisation Féminine :</span> Fiche d'inscription
+  </p>
 </header>
 
 <form id="bcwcForm">
@@ -44,7 +46,7 @@ button:hover{background:#bfa74f;color:#001f4d;}
 <input name="birth" placeholder="Date & lieu de naissance" required>
 <input name="age" placeholder="Âge (18-35)" required>
 <input name="identity" placeholder="N° CNI / Passeport" required>
-<input name="city" placeholder="Ville & Quartier" required>
+<input name="city" placeholder="Pays & Ville" required>
 <input name="phone" placeholder="Téléphone / WhatsApp" required>
 <input type="email" name="email" placeholder="Email" required>
 <input name="occupation" placeholder="Profession actuelle" required>
@@ -52,6 +54,7 @@ button:hover{background:#bfa74f;color:#001f4d;}
 
 <section>
 <h2>2. Secteur</h2>
+<label><input type="radio" name="sector" value="Production Végétale" required> Production Végétale (Maïs, Manioc, Tubercules, etc.)</label><br>
 <label><input type="radio" name="sector" value="AGRO" required> Agriculture & Agroalimentaire</label><br>
 <label><input type="radio" name="sector" value="ELEVAGE"> Élevage & Transformation animale</label><br>
 <label><input type="radio" name="sector" value="LOGISTIQUE"> Logistique & Conditionnement</label>
@@ -62,9 +65,13 @@ button:hover{background:#bfa74f;color:#001f4d;}
 <textarea name="projectSummary" rows="5" required></textarea>
 </section>
 
+<section><!-- 3. Engagement des candidates -->
 <section>
-<h2>4. Engagement</h2>
-<label><input type="checkbox" required> Je respecte les engagements du programme BCWC</label>
+  <h2>3. Engagement des candidates</h2>
+  <label><input type="checkbox" name="engagement_assiduite" required> Assiduité : Je m'engage à être présente à toutes les sessions du 02 au 08 mars 2026.</label><br>
+  <label><input type="checkbox" name="engagement_action" required> Cellule d'Action : J'accepte de travailler en groupe pour une production industrielle collective.</label><br>
+  <label><input type="checkbox" name="engagement_discipline" required> Discipline : Je respecterai les valeurs d'intégrité et de travail prônées par l'État.</label>
+<label>< type="checkbox" required> Je respecte les engagements du programme BCWC</label>
 </section>
 
 <button type="button" id="submitBtn">Soumettre l’inscription</button>
