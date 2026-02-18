@@ -3,139 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Charity & Hope Africa</title>
+<title>Charity Europe Africa</title>
 <style>
-  /* Couleurs principales */
-  :root {
-    --marine: #002f4b;
-    --or: #d4af37;
-    --blanc-casse: #f6f5f0;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: var(--blanc-casse);
-    color: var(--marine);
-  }
-
-  header {
-    background-color: var(--marine);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 1.8rem;
-  }
-
-  section {
-    background-color: var(--blanc-casse);
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-
-  h2 {
-    color: var(--marine);
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-
-  .btn {
-    display: inline-block;
-    background-color: var(--or);
-    color: var(--marine);
-    padding: 0.7rem 1.5rem;
-    margin: 0.5rem 0;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
-  }
-
-  .btn:hover {
-    background-color: var(--marine);
-    color: var(--or);
-  }
-
-  /* Responsive */
-  @media(min-width: 768px) {
-    .btn {
-      width: auto;
+    /* Couleurs et typographie */
+    :root {
+        --bleu-marin: #002147;
+        --or: #FFD700;
+        --blanc-casse: #F5F5DC;
     }
-  }
-
-  .rubrique-date {
-    background-color: var(--blanc-casse);
-    color: var(--marine);
-    padding: 0.5rem;
-    border-left: 5px solid var(--or);
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: var(--blanc-casse);
+        color: var(--bleu-marin);
+    }
+    header {
+        background-color: var(--bleu-marin);
+        color: var(--blanc-casse);
+        padding: 20px;
+        text-align: center;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2em;
+    }
+    header p {
+        margin: 5px 0;
+        font-size: 1em;
+    }
+    nav {
+        background-color: var(--or);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav a {
+        color: var(--bleu-marin);
+        text-decoration: none;
+        padding: 15px 20px;
+        font-weight: bold;
+    }
+    nav a:hover {
+        background-color: var(--bleu-marin);
+        color: var(--or);
+    }
+    section {
+        padding: 40px 20px;
+        border-bottom: 2px solid var(--or);
+    }
+    section h2 {
+        text-align: center;
+        color: var(--bleu-marin);
+    }
+    .project, .event {
+        background-color: #fff;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 800px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .project h3, .event h3 {
+        color: var(--bleu-marin);
+    }
+    .project p, .event p {
+        line-height: 1.5;
+    }
+    .btn-pay {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: var(--bleu-marin);
+        color: var(--blanc-casse);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .btn-pay:hover {
+        background-color: var(--or);
+        color: var(--bleu-marin);
+    }
+    footer {
+        background-color: var(--bleu-marin);
+        color: var(--blanc-casse);
+        text-align: center;
+        padding: 20px;
+    }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Charity & Hope Africa (CHA)</h1>
+    <h1>Bienvenue sur le site officiel de Charity Europe Africa</h1>
+    <p>Numéro d’autorisation : 1234567890</p>
 </header>
 
-<section>
-  <div class="rubrique-date">TITRE I : DÉNOMINATION – SIÈGE – DURÉE – OBJET</div>
-  <h2>Dénomination</h2>
-  <p>L'association s'appelle Charity & Hope Africa (CHA).</p>
-  <a href="#" class="btn">Faire un don (Mobile Money)</a>
+<nav>
+    <a href="#projets">Projets</a>
+    <a href="#evenements">Événements</a>
+    <a href="#partenaires">Partenaires</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="projets">
+    <h2>Nos Projets</h2>
+    <div class="project">
+        <h3>Projet 1: Industrial Business Competition</h3>
+        <p>Détails complets du projet ici… Objectifs, bénéficiaires, et instructions pour participer.</p>
+        <a class="btn-pay" href="tel:+237652075162">Payer via Mobile Money 1</a>
+        <a class="btn-pay" href="tel:+237691238359">Payer via Mobile Money 2</a>
+    </div>
+    <div class="project">
+        <h3>Projet 2: Formation des Jeunes</h3>
+        <p>Détails complets du projet ici… Objectifs, bénéficiaires, et instructions pour participer.</p>
+        <a class="btn-pay" href="tel:+237652075162">Payer via Mobile Money 1</a>
+        <a class="btn-pay" href="tel:+237691238359">Payer via Mobile Money 2</a>
+    </div>
+    <!-- Ajoute ici tous tes autres projets de la même manière -->
 </section>
 
-<section>
-  <div class="rubrique-date">TITRE II : MEMBRES – ADHÉSION – DROITS ET DEVOIRS</div>
-  <h2>Membres et Adhésion</h2>
-  <p>Rejoignez-nous pour soutenir les actions sociales, éducatives et entrepreneuriales.</p>
-  <a href="#" class="btn">Cotisation Mobile Money</a>
+<section id="evenements">
+    <h2>Nos Événements</h2>
+    <div class="event">
+        <h3>Événement 1: Business Class Women Competition</h3>
+        <p>Instructions détaillées pour l’inscription, objectifs et activités.</p>
+        <a class="btn-pay" href="tel:+237652075162">Payer via Mobile Money 1</a>
+        <a class="btn-pay" href="tel:+237691238359">Payer via Mobile Money 2</a>
+    </div>
+    <div class="event">
+        <h3>Événement 2: Salon Industriel</h3>
+        <p>Instructions détaillées pour l’inscription, objectifs et activités.</p>
+        <a class="btn-pay" href="tel:+237652075162">Payer via Mobile Money 1</a>
+        <a class="btn-pay" href="tel:+237691238359">Payer via Mobile Money 2</a>
+    </div>
+    <!-- Ajoute ici tous tes autres événements -->
 </section>
 
-<section>
-  <div class="rubrique-date">TITRE III : ORGANISATION ET FONCTIONNEMENT</div>
-  <h2>Bureau Exécutif</h2>
-  <p>Découvrez notre équipe dirigeante et leur rôle dans la gestion de CHA.</p>
-  <a href="#" class="btn">Soutenir nos projets</a>
+<section id="partenaires">
+    <h2>Nos Partenaires</h2>
+    <p>Liste complète des partenaires et collaborateurs ici…</p>
 </section>
 
-<section>
-  <div class="rubrique-date">TITRE IV : RESSOURCES ET GESTION FINANCIÈRE</div>
-  <h2>Finances</h2>
-  <p>Nos actions sont financées par vos dons et contributions via Mobile Money.</p>
-  <a href="#" class="btn">Dons Mobile Money</a>
+<section id="contact">
+    <h2>Contactez-nous</h2>
+    <p>Numéros Mobile Money pour contributions ou inscriptions :</p>
+    <ul>
+        <li>+237 652 075 162</li>
+        <li>+237 691 238 359</li>
+    </ul>
 </section>
 
-<section>
-  <div class="rubrique-date">TITRE V : PROJETS & ACTIVITÉS</div>
-  <h2>Projets en cours</h2>
-  <p>Participer à la Business Class Women Competition, l’Industriade et nos programmes éducatifs.</p>
-  <a href="#" class="btn">Contribuer via Mobile Money</a>
-</section>
-
-<section>
-  <div class="rubrique-date">CONTACT & PARTENARIAT</div>
-  <h2>Contactez-nous</h2>
-  <p>Pour tout partenariat ou question, contactez-nous directement via Mobile Money ou email.</p>
-  <a href="#" class="btn">Don Mobile Money</a>
-</section>
+<footer>
+    <p>© 2026 Charity Europe Africa</p>
+</footer>
 
 </body>
 </html>
