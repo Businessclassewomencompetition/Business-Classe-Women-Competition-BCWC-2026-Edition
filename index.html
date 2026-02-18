@@ -1,159 +1,154 @@
+<?php
+// Ce projet Laravel est prêt à être hébergé
+// Il inclut les bases : Multilingue, paiement, événements, blog, contact
+
+// 1. Installation Laravel (à faire côté serveur)
+// composer create-project laravel/laravel charityandhope
+
+// 2. .env (Configuration de la base de données et paiement Flutterwave)
+// DB_CONNECTION=mysql
+// DB_HOST=127.0.0.1
+// DB_PORT=3306
+// DB_DATABASE=cha_db
+// DB_USERNAME=root
+// DB_PASSWORD=secret
+// FLUTTERWAVE_KEY=clé_api_flutterwave
+
+// 3. Routes (routes/web.php)
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\PaymentController;
+
+Route::get('/', [PageController::class, 'home']);
+Route::get('/about', [PageController::class, 'about']);
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/event/{id}', [EventController::class, 'show']);
+Route::post('/event/register', [EventController::class, 'register']);
+Route::get('/blog', [PageController::class, 'blog']);
+Route::get('/contact', [PageController::class, 'contact']);
+Route::post('/contact/send', [PageController::class, 'sendContact']);
+Route::post('/payment/flutterwave', [PaymentController::class, 'flutterwave']);
+
+// 4. Middleware pour la langue (app/Http/Middleware/SetLocale.php)
+namespace App\Http\Middleware;
+use Closure;
+use Illuminate\Support\Facades\App;
+
+class SetLocale {
+    public function handle($request, Closure $next) {
+        $locale = session('locale', 'fr');
+        App::setLocale($locale);
+        return $next($request);
+    }
+}
+
+// 5. Layout Blade (resources/views/layouts/app.blade.php)
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app()->getLocale() }}">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BCWC 2026 Edition - Autonomisation Féminin :Fiche d'inscription</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<style>
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  background:#f9f7f1;
-  color:#001f4d;
-  padding:15px;
-}
-header{text-align:center;margin-bottom:20px;}
-header h1{margin:0;font-size:1.6em;}
-header p{color:#bfa74f;font-weight:bold;}
-
-section{margin-bottom:20px;}
-h2{border-bottom:2px solid #bfa74f;padding-bottom:5px;font-size:1.1em;}
-input,textarea,select,button{
-  width:100%;padding:10px;margin-bottom:8px;border-radius:5px;
-}
-button{
-  background:#001f4d;color:#fff;font-weight:bold;border:none;
-}
-button:hover{background:#bfa74f;color:#001f4d;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity & Hope Africa</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
-<body>
-
-<header>
-  <h1>Business Class Women Competition (BCWC) – 2026</h1>
-  <p>
-    <span style="color:#FFD700; font-weight:bold;">Autonomisation Féminine :</span> Fiche d'inscription
-  </p>
-</header>
-
-<form id="bcwcForm">
-
-<section>
-<h2>1. Identification</h2>
-<input name="fullName" placeholder="Nom complet" required>
-<input name="birth" placeholder="Date & lieu de naissance" required>
-<input name="age" placeholder="Âge (18-35)" required>
-<input name="identity" placeholder="N° CNI / Passeport" required>
-<input name="city" placeholder="Pays & Ville" required>
-<input name="phone" placeholder="Téléphone / WhatsApp" required>
-<input type="email" name="email" placeholder="Email" required>
-<input name="occupation" placeholder="Profession actuelle" required>
-</section>
-
-<section>
-<h2>2. Secteur</h2>
-<label><input type="radio" name="sector" value="Production Végétale" required> Production Végétale (Maïs, Manioc, Tubercules, etc.)</label><br>
-<label><input type="radio" name="sector" value="AGRO" required> Agriculture & Agroalimentaire</label><br>
-<label><input type="radio" name="sector" value="ELEVAGE"> Élevage & Transformation animale</label><br>
-<label><input type="radio" name="sector" value="LOGISTIQUE"> Logistique & Conditionnement</label>
-</section>
-
-<section>
-<h2>3. Résumé du projet</h2>
-<textarea name="projectSummary" rows="5" required></textarea>
-</section>
-
-<section><!-- 4. Engagement des candidates -->
-<section>
-  <h2>4. Engagement des candidates</h2>
-  <label><input type="checkbox" name="engagement_assiduite" required> Assiduité : Je m'engage à être présente à toutes les sessions du 02 au 08 mars 2026.</label><br>
-  <label><input type="checkbox" name="engagement_action" required> Cellule d'Action : J'accepte de travailler en groupe pour une production industrielle collective.</label><br>
-  <label><input type="checkbox" name="engagement_discipline" required> Discipline : Je respecterai les valeurs d'intégrité et de travail prônées par l'État.</label>
-<label>< type="checkbox" required> Je respecte les engagements du programme BCWC</label>
-</section>
-
-  <!-- 5. Validation du candidat -->
-<section>
-  <h2>5. Validation du candidat / Candidate Validation</h2>
-  <label>
-    <input type="checkbox" name="validation" required> LU ET APPROUVÉ / READ AND APPROVED
-  </label>
-  <br>
-  <label>
-    Date : <input type="text" name="validationDate" placeholder="__/__/2026" required>
-  </label>
-</section>
-  
-<button type="button" id="submitBtn">Soumettre l’inscription</button>
-</form>
-
-<script>
-const { jsPDF } = window.jspdf;
-const form = document.getElementById("bcwcForm");
-
-function generateNumber(){
-  return "BCWC-2026-AGRO-" + Math.floor(1000 + Math.random()*9000);
-}
-
-document.getElementById("submitBtn").onclick = () => {
- if(!form.checkValidity()){alert("Veuillez remplir tous les champs.");return;}
-
- const num = generateNumber();
- const doc = new jsPDF();
-
- // EN-TÊTE
- doc.setFillColor(0,31,77);
- doc.rect(0,0,210,22,'F');
- doc.setTextColor(191,167,79);
- doc.setFontSize(10);
- doc.text("AUTONOMISATION FÉMININE:FICHE OFFICIELLE DE CONFIRMATION – BCWC 2026",105,10,{align:"center"});
- doc.text("INSCRIPTION SOUMISE AVEC SUCCÈS",105,16,{align:"center"});
-
- let y=30;
- doc.setTextColor(0,0,0);
- doc.setFontSize(11);
-
- doc.text("📌 Statut du dossier : 🟢 Dossier reçu",10,y); y+=8;
- doc.text("Numéro de candidate :",10,y); y+=6;
- doc.setFont(undefined,"bold");
- doc.text(num,10,y); y+=10;
- doc.setFont(undefined,"normal");
-
- doc.text("⚠️ Ce document est obligatoire pour finaliser votre dossier.",10,y); y+=10;
-
- doc.text("📂 DOCUMENTS À ENVOYER (sous 24 heures)",10,y); y+=6;
- doc.text("- CNI ou Passeport",10,y); y+=5;
- doc.text("- Deux (02) photos 4x4",10,y); y+=5;
- doc.text("- Preuve de paiement (le cas échéant)",10,y); y+=5;
- doc.text("- Fiche de confirmation (PDF)",10,y); y+=8;
- doc.text("📧 infobusinessclassewomen@gmail.com",10,y); y+=8;
- doc.text("⏰ Tout dossier incomplet ou hors délai sera rejeté.",10,y); y+=10;
-
- doc.text("🏢 RÉSERVATION DE STAND (Exposants)",10,y); y+=6;
- doc.text("Email : infobusinessclassewomen@gmail.com",10,y); y+=5;
- doc.text("Téléphone : +237 691 238 359",10,y); y+=8;
-
- doc.text("🎟️ BILLETTERIE – ACCÈS AU PUBLIC",10,y); y+=6;
- doc.text("Email : infobusinessclassewomen@gmail.com",10,y); y+=5;
- doc.text("Téléphone : +237 691 238 359",10,y); y+=10;
-
- doc.text("🤝 PARTENAIRES OFFICIELS",10,y); y+=6;
- doc.text("Institutions : MINPROFF, MINPMEESA, MINADER, MINEPIA, MINJEC",10,y,{maxWidth:190}); y+=8;
- doc.text("Privés : MTN Cameroun, Orange Cameroun, Master Food",10,y); y+=8;
- doc.text("ONG & Réseaux : COMMONWEALTH WOMEN’S NETWORK AFRICA, HACIG, AYESUD, ONG BARAKUDA",10,y,{maxWidth:190}); y+=12;
-
- doc.text("🏛️ Organisation",10,y); y+=6;
- doc.text("Issued by / Délivré par :",10,y); y+=5;
- doc.text("CHARITY & HOPE AFRICA",10,y); y+=5;
- doc.text("BCWC 2026 Organizing Committee",10,y);
-
- doc.save("BCWC_Confirmation_"+num+".pdf");
- alert("Inscription soumise. Votre confirmation PDF a été générée.");
- form.reset();
-};
-</script>
-
+<body class="bg-gray-50 text-gray-800">
+    <header class="bg-blue-900 text-white p-4 flex justify-between">
+        <h1 class="text-2xl font-bold">Charity & Hope Africa</h1>
+        <nav>
+            <a href="/" class="px-2">Accueil</a>
+            <a href="/about" class="px-2">À propos</a>
+            <a href="/events" class="px-2">Événements</a>
+            <a href="/blog" class="px-2">Blog</a>
+            <a href="/contact" class="px-2">Contact</a>
+        </nav>
+    </header>
+    <main class="p-6">
+        @yield('content')
+    </main>
+    <footer class="bg-gray-100 p-4 text-center">
+        &copy; 2026 Charity & Hope Africa. Tous droits réservés.
+    </footer>
 </body>
 </html>
+
+// 6. Home Blade (resources/views/home.blade.php)
+@extends('layouts.app')
+@section('content')
+<div class="text-center">
+    <h2 class="text-4xl font-bold text-blue-900">Promouvoir l'espoir et la dignité</h2>
+    <p class="mt-4 text-lg">Investir dans les talents pour un Cameroun émergent.</p>
+    <a href="/events" class="mt-6 inline-block bg-yellow-500 text-white font-bold px-6 py-3 rounded">Voir nos événements</a>
+</div>
+@endsection
+
+// 7. Event Registration Form (resources/views/events.blade.php)
+@extends('layouts.app')
+@section('content')
+<h2 class="text-3xl font-bold mb-4">Événements</h2>
+@foreach($events as $event)
+<div class="bg-white shadow-md p-4 mb-4">
+    <h3 class="text-xl font-bold">{{ $event->name }}</h3>
+    <p>{{ $event->description }}</p>
+    <p class="text-sm text-gray-500">{{ $event->date }}</p>
+    <form action="/event/register" method="POST" class="mt-2">
+        @csrf
+        <input type="hidden" name="event_id" value="{{ $event->id }}">
+        <input type="text" name="name" placeholder="Nom" required class="border p-1 mr-2">
+        <input type="email" name="email" placeholder="Email" required class="border p-1 mr-2">
+        <input type="tel" name="phone" placeholder="Téléphone" required class="border p-1 mr-2">
+        <button type="submit" class="bg-blue-900 text-white px-3 py-1 rounded">S'inscrire</button>
+    </form>
+</div>
+@endforeach
+@endsection
+
+// 8. Controller EventController (app/Http/Controllers/EventController.php)
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Registration;
+
+class EventController extends Controller {
+    public function index() {
+        $events = Event::all();
+        return view('events', compact('events'));
+    }
+
+    public function show($id) {
+        $event = Event::findOrFail($id);
+        return view('event_show', compact('event'));
+    }
+
+    public function register(Request $request) {
+        Registration::create($request->all());
+        return redirect('/events')->with('success', 'Inscription réussie !');
+    }
+}
+
+// 9. Models Event et Registration (app/Models/Event.php et Registration.php)
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+class Event extends Model { protected $fillable = ['name','description','date']; }
+class Registration extends Model { protected $fillable = ['event_id','name','email','phone']; }
+
+// 10. Paiement Flutterwave (simplifié)
+// app/Http/Controllers/PaymentController.php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
+class PaymentController extends Controller {
+    public function flutterwave(Request $request) {
+        // Ici tu configures l'API Flutterwave avec clé .env
+        $response = Http::withHeaders(['Authorization' => 'Bearer '.env('FLUTTERWAVE_KEY')])
+                        ->post('https://api.flutterwave.com/v3/payments', [
+                            'tx_ref' => uniqid(),
+                            'amount' => $request->amount,
+                            'currency' => 'XAF',
+                            'payment_type' => 'card',
+                            'redirect_url' => route('payment.callback')
+                        ]);
+        return $response->json();
+    }
+}
