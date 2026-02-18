@@ -1,137 +1,141 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Charity & Hope Africa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Simple multilang switcher
-    function changeLang(lang) {
-      document.querySelectorAll('[data-lang]').forEach(el=>{
-        el.style.display = (el.dataset.lang===lang) ? 'block':'none';
-      });
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charity & Hope Africa</title>
+<style>
+  /* Couleurs principales */
+  :root {
+    --marine: #002f4b;
+    --or: #d4af37;
+    --blanc-casse: #f6f5f0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--blanc-casse);
+    color: var(--marine);
+  }
+
+  header {
+    background-color: var(--marine);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+
+  section {
+    background-color: var(--blanc-casse);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    color: var(--marine);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    background-color: var(--or);
+    color: var(--marine);
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+  }
+
+  .btn:hover {
+    background-color: var(--marine);
+    color: var(--or);
+  }
+
+  /* Responsive */
+  @media(min-width: 768px) {
+    .btn {
+      width: auto;
     }
-  </script>
+  }
+
+  .rubrique-date {
+    background-color: var(--blanc-casse);
+    color: var(--marine);
+    padding: 0.5rem;
+    border-left: 5px solid var(--or);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+</style>
 </head>
-<body class="bg-white font-sans text-gray-800">
+<body>
 
-  <!-- HEADER -->
-  <header class="bg-blue-900 text-white shadow-lg">
-    <div class="container mx-auto flex justify-between items-center p-4">
-      <h1 class="text-2xl font-bold">Charity & Hope Africa</h1>
-      <div>
-        <select onchange="changeLang(this.value)" class="bg-blue-800 text-white px-2 py-1 rounded">
-          <option value="fr">FR</option>
-          <option value="en">EN</option>
-          <option value="cn">CN</option>
-          <option value="ar">AR</option>
-        </select>
-      </div>
-    </div>
-  </header>
+<header>
+  <h1>Charity & Hope Africa (CHA)</h1>
+</header>
 
-  <!-- HERO SECTION -->
-  <section class="bg-gradient-to-r from-blue-900 to-yellow-500 text-white py-20 text-center">
-    <h2 class="text-4xl font-bold mb-4" data-lang="fr">Promouvoir la solidarité et l'espoir</h2>
-    <h2 class="text-4xl font-bold mb-4 hidden" data-lang="en">Promoting Solidarity and Hope</h2>
-    <h2 class="text-4xl font-bold mb-4 hidden" data-lang="cn">促进团结与希望</h2>
-    <h2 class="text-4xl font-bold mb-4 hidden" data-lang="ar">تعزيز التضامن والأمل</h2>
-    <p class="text-xl mb-6" data-lang="fr">Investir dans le potentiel humain pour transformer les communautés</p>
-    <p class="text-xl mb-6 hidden" data-lang="en">Investing in human potential to transform communities</p>
-    <p class="text-xl mb-6 hidden" data-lang="cn">投资人力潜力以改变社区</p>
-    <p class="text-xl mb-6 hidden" data-lang="ar">الاستثمار في الإمكانيات البشرية لتحويل المجتمعات</p>
-    <a href="#donate" class="bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded hover:bg-yellow-300 transition">Faire un don</a>
-  </section>
+<section>
+  <div class="rubrique-date">TITRE I : DÉNOMINATION – SIÈGE – DURÉE – OBJET</div>
+  <h2>Dénomination</h2>
+  <p>L'association s'appelle Charity & Hope Africa (CHA).</p>
+  <a href="#" class="btn">Faire un don (Mobile Money)</a>
+</section>
 
-  <!-- ABOUT SECTION -->
-  <section class="py-16 bg-gray-50" id="about">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-lang="fr">À propos de CHA</h2>
-      <h2 class="text-3xl font-bold mb-6 hidden" data-lang="en">About CHA</h2>
-      <h2 class="text-3xl font-bold mb-6 hidden" data-lang="cn">关于CHA</h2>
-      <h2 class="text-3xl font-bold mb-6 hidden" data-lang="ar">حول CHA</h2>
-      <p class="max-w-3xl mx-auto text-lg mb-4" data-lang="fr">
-        Charity & Hope Africa (CHA) est une organisation dédiée à la solidarité, l’éducation, l’entrepreneuriat et l’autonomisation économique en Afrique.
-      </p>
-      <p class="max-w-3xl mx-auto text-lg mb-4 hidden" data-lang="en">
-        Charity & Hope Africa (CHA) is dedicated to solidarity, education, entrepreneurship, and economic empowerment in Africa.
-      </p>
-      <p class="max-w-3xl mx-auto text-lg mb-4 hidden" data-lang="cn">
-        Charity & Hope Africa (CHA)致力于非洲的团结、教育、创业和经济赋权。
-      </p>
-      <p class="max-w-3xl mx-auto text-lg mb-4 hidden" data-lang="ar">
-        CHA مكرسة للتضامن والتعليم وريادة الأعمال والتمكين الاقتصادي في أفريقيا.
-      </p>
-    </div>
-  </section>
+<section>
+  <div class="rubrique-date">TITRE II : MEMBRES – ADHÉSION – DROITS ET DEVOIRS</div>
+  <h2>Membres et Adhésion</h2>
+  <p>Rejoignez-nous pour soutenir les actions sociales, éducatives et entrepreneuriales.</p>
+  <a href="#" class="btn">Cotisation Mobile Money</a>
+</section>
 
-  <!-- PROJECTS / EVENTS -->
-  <section class="py-16 bg-white" id="projects">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-12" data-lang="fr">Nos Projets & Événements</h2>
-      <h2 class="text-3xl font-bold mb-12 hidden" data-lang="en">Our Projects & Events</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-gray-100 rounded shadow p-6">
-          <img src="https://via.placeholder.com/300x200" alt="Projet" class="mb-4 rounded">
-          <h3 class="text-xl font-bold mb-2" data-lang="fr">Business Class Women</h3>
-          <h3 class="text-xl font-bold mb-2 hidden" data-lang="en">Business Class Women</h3>
-          <p data-lang="fr">Compétition pour autonomiser les jeunes femmes entrepreneures.</p>
-          <p class="hidden" data-lang="en">Competition empowering young women entrepreneurs.</p>
-        </div>
-        <div class="bg-gray-100 rounded shadow p-6">
-          <img src="https://via.placeholder.com/300x200" alt="Projet" class="mb-4 rounded">
-          <h3 class="text-xl font-bold mb-2" data-lang="fr">Étoiles Filantes</h3>
-          <h3 class="text-xl font-bold mb-2 hidden" data-lang="en">Shooting Stars</h3>
-          <p data-lang="fr">Programme intensif pour jeunes talents et entrepreneurs.</p>
-          <p class="hidden" data-lang="en">Intensive program for young talents and entrepreneurs.</p>
-        </div>
-        <div class="bg-gray-100 rounded shadow p-6">
-          <img src="https://via.placeholder.com/300x200" alt="Projet" class="mb-4 rounded">
-          <h3 class="text-xl font-bold mb-2" data-lang="fr">Industriade 2026</h3>
-          <h3 class="text-xl font-bold mb-2 hidden" data-lang="en">Industriade 2026</h3>
-          <p data-lang="fr">Challenge industriel et formation pour l’autonomisation économique.</p>
-          <p class="hidden" data-lang="en">Industrial challenge and training for economic empowerment.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section>
+  <div class="rubrique-date">TITRE III : ORGANISATION ET FONCTIONNEMENT</div>
+  <h2>Bureau Exécutif</h2>
+  <p>Découvrez notre équipe dirigeante et leur rôle dans la gestion de CHA.</p>
+  <a href="#" class="btn">Soutenir nos projets</a>
+</section>
 
-  <!-- DONATE SECTION -->
-  <section class="py-16 bg-blue-900 text-white" id="donate">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-lang="fr">Faites un don</h2>
-      <h2 class="text-3xl font-bold mb-6 hidden" data-lang="en">Make a Donation</h2>
-      <p class="mb-6" data-lang="fr">Soutenez nos initiatives pour transformer des vies.</p>
-      <p class="mb-6 hidden" data-lang="en">Support our initiatives to transform lives.</p>
+<section>
+  <div class="rubrique-date">TITRE IV : RESSOURCES ET GESTION FINANCIÈRE</div>
+  <h2>Finances</h2>
+  <p>Nos actions sont financées par vos dons et contributions via Mobile Money.</p>
+  <a href="#" class="btn">Dons Mobile Money</a>
+</section>
 
-      <!-- Simple payment buttons (to integrate Flutterwave, PayPal, Orange Money) -->
-      <div class="flex flex-col md:flex-row justify-center gap-4">
-        <button class="bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded hover:bg-yellow-300 transition">Flutterwave</button>
-        <button class="bg-white text-blue-900 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">PayPal</button>
-        <button class="bg-yellow-500 text-white font-bold px-6 py-3 rounded hover:bg-yellow-400 transition">Orange Money</button>
-      </div>
-    </div>
-  </section>
+<section>
+  <div class="rubrique-date">TITRE V : PROJETS & ACTIVITÉS</div>
+  <h2>Projets en cours</h2>
+  <p>Participer à la Business Class Women Competition, l’Industriade et nos programmes éducatifs.</p>
+  <a href="#" class="btn">Contribuer via Mobile Money</a>
+</section>
 
-  <!-- CONTACT SECTION -->
-  <section class="py-16 bg-gray-50" id="contact">
-    <div class="container mx-auto px-4 max-w-xl">
-      <h2 class="text-3xl font-bold text-center mb-6" data-lang="fr">Contactez-nous</h2>
-      <h2 class="text-3xl font-bold text-center mb-6 hidden" data-lang="en">Contact Us</h2>
-      <form class="bg-white p-6 rounded shadow space-y-4">
-        <input type="text" placeholder="Nom" class="w-full p-3 border rounded" required>
-        <input type="email" placeholder="Email" class="w-full p-3 border rounded" required>
-        <textarea placeholder="Message" class="w-full p-3 border rounded" rows="4" required></textarea>
-        <button type="submit" class="bg-blue-900 text-white font-bold px-6 py-3 rounded hover:bg-blue-800 transition w-full">Envoyer</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-blue-900 text-white py-6 text-center">
-    &copy; 2026 Charity & Hope Africa. Tous droits réservés.
-  </footer>
+<section>
+  <div class="rubrique-date">CONTACT & PARTENARIAT</div>
+  <h2>Contactez-nous</h2>
+  <p>Pour tout partenariat ou question, contactez-nous directement via Mobile Money ou email.</p>
+  <a href="#" class="btn">Don Mobile Money</a>
+</section>
 
 </body>
 </html>
